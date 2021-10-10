@@ -8,8 +8,30 @@ class radioTest {
 
     @Test
     void ShouldSetButtonNextStation() {
-        radio radio = new radio();
-        radio.setCurrentStation(0);
+        Radio radio = new Radio();
+        radio.setStation(8);
+        radio.setButtonNextStation();
+        int expected = 9;
+        int actual = radio.getCurrentStation();
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void ShouldSetButtonNextStationBoundVal() {
+        Radio radio = new Radio();
+        radio.setStation(9);
+        radio.setButtonNextStation();
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void ShouldSetButtonNextStationBoundVal2() {
+        Radio radio = new Radio();
+        radio.setStation(0);
         radio.setButtonNextStation();
         int expected = 1;
         int actual = radio.getCurrentStation();
@@ -18,9 +40,9 @@ class radioTest {
     }
 
     @Test
-    void ShouldSetButtonNextStation2() {
-        radio radio = new radio();
-        radio.setCurrentStation(9);
+    void ShouldSetButtonNextStationBoundVal3() {
+        Radio radio = new Radio();
+        radio.setStation(11);
         radio.setButtonNextStation();
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -30,18 +52,18 @@ class radioTest {
 
     @Test
     void setButtonPrevStation() {
-        radio radio = new radio();
-        radio.setCurrentStation(9);
+        Radio radio = new Radio();
+        radio.setStation(6);
         radio.setButtonPrevStation();
-        int expected = 8;
+        int expected = 5;
         int actual = radio.getCurrentStation();
         assertEquals(expected, actual);
     }
 
     @Test
-    void setButtonPrevStation2() {
-        radio radio = new radio();
-        radio.setCurrentStation(0);
+    void setButtonPrevStationBoundVal() {
+        Radio radio = new Radio();
+        radio.setStation(0);
         radio.setButtonPrevStation();
         int expected = 9;
         int actual = radio.getCurrentStation();
@@ -49,17 +71,51 @@ class radioTest {
     }
 
     @Test
+    void setButtonPrevStationBoundVal1() {
+        Radio radio = new Radio();
+        radio.setStation(1);
+        radio.setButtonPrevStation();
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void setButtonPrevStationBoundVal2() {
+        Radio radio = new Radio();
+        radio.setStation(9);
+        radio.setButtonPrevStation();
+        int expected = 8;
+        int actual = radio.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+
+
+
+    @Test
+    void setButtonPrevStation3() {
+        Radio radio = new Radio();
+        radio.setStation(11);
+        radio.setButtonPrevStation();
+        int expected = 9;
+        int actual = radio.getCurrentStation();
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
     void setCurrentStation() {
-        radio radio = new radio();
-        radio.setCurrentStation(4);
-        int expected = 4;
+        Radio radio = new Radio();
+        radio.setCurrentStation(6);
+        int expected = 6;
         int actual = radio.getCurrentStation();
         assertEquals(expected, actual);
     }
 
     @Test
     void setCurrentStation2() {
-        radio radio = new radio();
+        Radio radio = new Radio();
         radio.setCurrentStation(12);
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -68,7 +124,7 @@ class radioTest {
 
     @Test
     void setCurrentStation3() {
-        radio radio = new radio();
+        Radio radio = new Radio();
         radio.setCurrentStation(-5);
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -77,11 +133,11 @@ class radioTest {
 
     @Test
     void ShouldIncreaseVolume() {
-        radio radio = new radio();
-        radio.setCurrentVolume(7);
+        Radio radio = new Radio();
+        radio.setCurrentVolume(8);
         radio.increaseVolume();
         int actual = radio.getCurrentVolume();
-        int expected = 8;
+        int expected = 9;
         assertEquals(actual, expected);
 
 
@@ -89,7 +145,7 @@ class radioTest {
 
     @Test
     void ShouldIncreaseVolume2() {
-        radio radio = new radio();
+        Radio radio = new Radio();
         radio.setCurrentVolume(10);
         radio.increaseVolume();
         int actual = radio.getCurrentVolume();
@@ -101,7 +157,7 @@ class radioTest {
 
     @Test
     void decreaseVolume() {
-        radio radio = new radio();
+        Radio radio = new Radio();
         radio.setCurrentVolume(10);
         radio.decreaseVolume();
         int actual = radio.getCurrentVolume();
@@ -111,7 +167,7 @@ class radioTest {
 
     @Test
     void decreaseVolume2() {
-        radio radio = new radio();
+        Radio radio = new Radio();
         radio.setCurrentVolume(0);
         radio.decreaseVolume();
         int actual = radio.getCurrentVolume();
@@ -121,26 +177,30 @@ class radioTest {
 
     @Test
     void ShouldSetCurrentVolume() {
-        radio radio = new radio();
-        radio.setCurrentVolume(0);
-        int actual = radio.getCurrentVolume();
-        int expected = 0;
-        assertEquals(actual, expected);
-    }
-    @Test
-    void ShouldSetCurrentVolume2() {
-        radio radio = new radio();
+        Radio radio = new Radio();
         radio.setCurrentVolume(11);
         int actual = radio.getCurrentVolume();
         int expected = 0;
         assertEquals(actual, expected);
     }
+
+    @Test
+    void ShouldSetCurrentVolume2() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(11);
+        int actual = radio.getCurrentVolume();
+        int expected = 0;
+        assertEquals(actual, expected);
+    }
+
     @Test
     void ShouldSetCurrentVolume3() {
-        radio radio = new radio();
+        Radio radio = new Radio();
         radio.setCurrentVolume(-8);
         int actual = radio.getCurrentVolume();
         int expected = 0;
         assertEquals(actual, expected);
     }
+
 }
+
