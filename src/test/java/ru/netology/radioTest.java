@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class radioTest {
+class RadioTest {
 
     @Test
     void ShouldSetButtonNextStation() {
-        Radio radio = new Radio();
+        Radio radio = new Radio(11);
         radio.setStation(8);
         radio.setButtonNextStation();
         int expected = 9;
@@ -18,7 +18,7 @@ class radioTest {
     }
 
     @Test
-    void ShouldSetButtonNextStationBoundVal() {
+    public void ShouldSetButtonNextStationBoundVal() {
         Radio radio = new Radio();
         radio.setStation(9);
         radio.setButtonNextStation();
@@ -91,8 +91,6 @@ class radioTest {
     }
 
 
-
-
     @Test
     void setButtonPrevStation3() {
         Radio radio = new Radio();
@@ -146,10 +144,10 @@ class radioTest {
     @Test
     void ShouldIncreaseVolume2() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
         int actual = radio.getCurrentVolume();
-        int expected = 10;
+        int expected = 100;
         assertEquals(actual, expected);
 
 
@@ -158,10 +156,10 @@ class radioTest {
     @Test
     void decreaseVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(97);
         radio.decreaseVolume();
         int actual = radio.getCurrentVolume();
-        int expected = 9;
+        int expected = 96;
         assertEquals(actual, expected);
     }
 
@@ -178,7 +176,7 @@ class radioTest {
     @Test
     void ShouldSetCurrentVolume() {
         Radio radio = new Radio();
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(110);
         int actual = radio.getCurrentVolume();
         int expected = 0;
         assertEquals(actual, expected);
@@ -189,7 +187,7 @@ class radioTest {
         Radio radio = new Radio();
         radio.setCurrentVolume(11);
         int actual = radio.getCurrentVolume();
-        int expected = 0;
+        int expected = 11;
         assertEquals(actual, expected);
     }
 
@@ -202,5 +200,14 @@ class radioTest {
         assertEquals(actual, expected);
     }
 
+    @Test
+    void ShouldSetButtonNextStationWithParams() {
+        Radio radio = new Radio(15);
+        radio.setStation(15);
+        radio.setButtonNextStation();
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+        assertEquals(expected, actual);
+    }
 }
 
